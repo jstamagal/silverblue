@@ -66,21 +66,6 @@
                 "gvfs-nfs",
                 "ibus-unikey",
                 "ibus-mozc"
-            ],
-            "kinoite": [
-                "fcitx5-chinese-addons",
-                "fcitx5-configtool",
-                "fcitx5-gtk",
-                "fcitx5-hangul",
-                "fcitx5-libthai",
-                "fcitx5-mozc",
-                "fcitx5-qt",
-                "fcitx5-sayura",
-                "fcitx5-unikey",
-                "icoutils",
-                "kate",
-                "kcm-fcitx5",
-                "ksshaskpass"
             ]
         },
         "exclude": {
@@ -88,19 +73,7 @@
             "silverblue": [
                 "totem-video-thumbnailer",
                 "gnome-software-rpm-ostree"
-            ],
-            "kinoite": ["ffmpegthumbnailer", "plasma-discover-rpm-ostree"]
-        }
-    },
-    "42": {
-        "include": {
-            "all": [
-                "android-udev-rules",
-                "mesa-libxatracker"
             ]
-        },
-        "exclude": {
-            "all": []
         }
     }
 }

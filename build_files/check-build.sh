@@ -19,14 +19,6 @@ case "${VARIANT_ID:-}" in
         gnome-software
     )
     ;;
-"kinoite")
-    IMPORTANT_PACKAGES+=(
-        kwin
-        plasma-desktop
-        sddm
-        plasma-discover
-    )
-    ;;
 *) ;;
 esac
 

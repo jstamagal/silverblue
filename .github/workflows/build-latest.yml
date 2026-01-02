@@ -19,7 +19,6 @@ jobs:
       matrix:
         image_name:
           - base
-          - kinoite
           - silverblue
         image_variant:
           - main

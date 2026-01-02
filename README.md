@@ -1,16 +1,22 @@
-# NOTICE 15 October 2025: 
-The deprecated sway, budgie, and cosmic images have now been removed, see [#927](https://github.com/ublue-os/main/issues/927)
+# NOTICE: Personal Fork
+This is a personal fork of [ublue-os/main](https://github.com/ublue-os/main) focused on GNOME (Silverblue) only.
+
+**Changes from upstream:**
+- Kinoite (KDE) support removed
+- Fedora 42 support removed
+- Fedora Rawhide support added (bleeding edge!)
+- Only Fedora 43 (stable) and Rawhide (development) builds
 
 # Main
 
-[![build-gts](https://github.com/ublue-os/main/actions/workflows/build-gts.yml/badge.svg)](https://github.com/ublue-os/main/actions/workflows/build-gts.yml)
-[![build-latest](https://github.com/ublue-os/main/actions/workflows/build-latest.yml/badge.svg)](https://github.com/ublue-os/main/actions/workflows/build-latest.yml)
+[![build-rawhide](https://github.com/USERNAME/silverblue/actions/workflows/build-rawhide.yml/badge.svg)](https://github.com/USERNAME/silverblue/actions/workflows/build-rawhide.yml)
+[![build-latest](https://github.com/USERNAME/silverblue/actions/workflows/build-latest.yml/badge.svg)](https://github.com/USERNAME/silverblue/actions/workflows/build-latest.yml)
 
 A common main image for all other uBlue images, with minimal (but important) adjustments to Fedora. <3
 
-Deprecation Notice: Universal Blue is trimming support for intermediate images (such as those built in main) which are not used in our project's final images (Aurora, Bazzite, Bluefin).
-
-As of September 2025, this repo will only build base, kinoite, and silverblue images.
+**Built images:** base, silverblue
+**Fedora versions:** 43 (stable), rawhide (development)
+**Variants:** main, nvidia
 
 # Documentation
 

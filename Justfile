@@ -2,10 +2,9 @@ set unstable := true
 
 # Tags
 
-gts := "42"
 latest := "43"
 [private]
-beta := "44"
+rawhide := "rawhide"
 
 # Defaults
 
@@ -36,19 +35,16 @@ image-file := justfile_dir() / "image-versions.yaml"
 images := '(
     ["base"]="base-atomic"
     ["silverblue"]="silverblue"
-    ["kinoite"]="kinoite"
 )'
 
 # Fedora Versions
 
 [private]
 fedora_versions := '(
-    ["gts"]="' + gts + '"
-    ["' + gts + '"]="' + gts + '"
     ["latest"]="' + latest + '"
     ["' + latest + '"]="' + latest + '"
-    ["beta"]="' + beta + '"
-    ["' + beta + '"]="' + beta + '"
+    ["rawhide"]="' + rawhide + '"
+    ["' + rawhide + '"]="' + rawhide + '"
 )'
 
 # Variants
@@ -102,8 +98,8 @@ fedora_version="${_images[2]}"
 build-missing := '
 cmd="' + just + ' build ${image_name%-*} $fedora_version $variant"
 if ! ' + PODMAN + ' image exists "localhost/$image_name:$fedora_version"; then
-    echo "' + style('warning') + 'Warning' + NORMAL +': Container Does Not Exist..." >&2
-    echo "' + style('warning') + 'Will Run' + NORMAL +': ' + style('command') + '$cmd' + NORMAL +'" >&2
+    echo "' + style('warning') + 'Warning' + NORMAL + ': Container Does Not Exist..." >&2
+    echo "' + style('warning') + 'Will Run' + NORMAL + ': ' + style('command') + '$cmd' + NORMAL + '" >&2
     seconds=5
     while [ $seconds -gt 0 ]; do
         printf "\rTime remaining: ' + style('error') + '%d' + NORMAL + ' seconds to cancel" $seconds >&2
@@ -111,7 +107,7 @@ if ! ' + PODMAN + ' image exists "localhost/$image_name:$fedora_version"; then
         (( seconds-- ))
     done
     echo "" >&2
-    echo "'+ style('warning') +'Running'+ NORMAL+ ': '+ style('command') +'$cmd'+ NORMAL+ '" >&2
+    echo "' + style('warning') + 'Running' + NORMAL + ': ' + style('command') + '$cmd' + NORMAL + '" >&2
     $cmd
 fi
 '
@@ -126,7 +122,7 @@ function pull-retry() {
         (( retries-- ))
     done
     if ! (( retries )); then
-        echo "' + style('error') +' Unable to pull ${target/@*/}...' + NORMAL +'" >&2
+        echo "' + style('error') + ' Unable to pull ${target/@*/}...' + NORMAL + '" >&2
         exit 1
     fi
     trap - SIGINT
@@ -258,15 +254,12 @@ gen-tags $image_name="" $fedora_version="" $variant="":
     SHA_SHORT="$(git rev-parse --short HEAD)"
 
     # Define Versions
-    if [[ "$fedora_version" -eq "{{ gts }}" ]]; then
-        COMMIT_TAGS=("$SHA_SHORT-gts")
-        BUILD_TAGS=("gts" "gts-$TIMESTAMP")
+    if [[ "$fedora_version" -eq "{{ rawhide }}" ]]; then
+        COMMIT_TAGS=("$SHA_SHORT-rawhide")
+        BUILD_TAGS=("rawhide" "rawhide-$TIMESTAMP")
     elif [[ "$fedora_version" -eq "{{ latest }}" ]]; then
         COMMIT_TAGS=("$SHA_SHORT-latest")
         BUILD_TAGS=("latest" "latest-$TIMESTAMP")
-    elif [[ "$fedora_version" -eq "{{ beta }}" ]]; then
-        COMMIT_TAGS=("$SHA_SHORT-beta")
-        BUILD_TAGS=("beta beta-$TIMESTAMP")
     fi
 
     COMMIT_TAGS+=("$SHA_SHORT-$fedora_version" "$fedora_version")

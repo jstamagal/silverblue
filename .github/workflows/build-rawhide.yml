@@ -1,8 +1,8 @@
-name: ublue beta
+name: ublue rawhide
 
 on:
-  # pull_request:
-  # merge_group:
+  pull_request:
+  merge_group:
   workflow_dispatch:
 
 concurrency:
@@ -19,7 +19,6 @@ jobs:
       matrix:
         image_name:
           - base
-          - kinoite
           - silverblue
         image_variant:
           - main
@@ -27,4 +26,4 @@ jobs:
     with:
       image_name: ${{ matrix.image_name }}
       image_variant: ${{ matrix.image_variant }}
-      image_version: beta
+      image_version: rawhide
